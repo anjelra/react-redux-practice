@@ -7,6 +7,7 @@ class Counter extends Component {
     // 덮어쓰기 때문에 super(props)로 기존 Component의 생성자를 미리 실행한 후, 새로 추가할 생성자를 입력해야 하기 떄문이다.
     constructor(props) {
         super(props);
+        console.log('constructor');
         this.state = {
             number: 0,
             // 아래의 state를 변경해주기 위해서는 ,
@@ -31,6 +32,28 @@ class Counter extends Component {
                 foobar: 1
             }
         };
+    }
+
+    componentDidMount() {
+        // 컴포넌트가 화면에 나타나게 됐을 때 호출됨.
+        // 주로, ajax, axios 등 서버 통신을 하는 경우에 호출됨.
+        console.log('componentDidMount');
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate');
+        if (nextState.number % 5 === 0) {
+            return false;
+        }
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('componentWillUpdate');
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate');
     }
     // state = {
     //     number: 0
@@ -68,6 +91,7 @@ class Counter extends Component {
     }
 
     render() {
+        console.log('render');
         return (
             <div>
                 <h1>카운터</h1>
