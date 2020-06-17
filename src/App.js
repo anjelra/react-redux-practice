@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Component } from 'react';
+// import MyName from './MyName';
+import Counter from './Counter';
+import './App.css'
 
-class App extends Comment {
+class App extends Component {
   render() {
-    const name = 'react'
     return (
-      <div>
-        hello {name}!
-      </div>
+      // <MyName name="송안젤라"/>
+      <Counter/>
     );
   }
 }
