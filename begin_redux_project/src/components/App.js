@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppTemplate from './AppTemplate';
-import CounterContainer from 'containers/CounterContainer';
+import CounterContainer from '../containers/CounterContainer';
 
 import Todos from './Todos';
 
