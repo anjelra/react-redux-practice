@@ -16,7 +16,8 @@ class App extends Component {
         name: '홍길동',
         phone: '010-1234-5678'
       }
-    ]
+    ],
+    keyword: ''
   }
 
   handleCreate = (data) => {
@@ -43,16 +44,39 @@ class App extends Component {
     });
   }
 
+  handleChange = (e) => {
+    this.setState({
+      keyword: e.target.value
+    });
+  }
+
+  // 쓸데없는 rendering을 막기 위해 data가 달라졌을 때에만 rendering 될 수 있도록 구현
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps && nextProps.data !== this.props.data;
+  // }
+
   render() {
-    const {information} = this.state;
+    console.log('App.js render()');
+    const {information, keyword} = this.state;
+    const filteredList = information.filter(
+      info => info.name.indexOf(keyword) !== -1
+    );
+
     return (
-      // <Counter/>
       <div>
         <PhoneForm
           onCreate={this.handleCreate}
         />
+        <p>
+          <input
+              placeholder="검색 할 이름을 입력하세요"
+              onChange={this.handleChange}
+              value={keyword}
+            />
+        </p>
+        <hr/>
         <PhoneInfoList 
-          data={information}
+          data={filteredList}
           onRemove={this.handleRemove}
           onUpdate={this.handleUpate}
         />
